@@ -15,6 +15,7 @@ floating. This emulates the scratch functionality of i3 as closely as possible.
 
 ## Setup
 
+Put the following default configuration in your `config.py`:
 ```python
 ## Setup MutableScratch
 mutscr = MutableScratch()

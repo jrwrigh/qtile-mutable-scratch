@@ -1,7 +1,7 @@
 import libqtile
 from libqtile.lazy import lazy
 from libqtile.log_utils import logger
-import libqtile.window
+import libqtile.backend.base
 
 
 class MutableScratch(object):
@@ -88,26 +88,26 @@ class MutableScratch(object):
         return _toggle
 
 
-    def _push(self, win: libqtile.window.Window):
+    def _push(self, win: libqtile.backend.base.Window):
         """Hide and push window to stack
 
         Parameters
         ----------
-        win : libqtile.window.Window
+        win : libqtile.backend.base.Window
             Window to push to the stack
         """
         win.togroup(self.grp_name)
         self.win_stack.append(win)
 
 
-    def _pop(self, qtile, win: libqtile.window.Window):
+    def _pop(self, qtile, win: libqtile.backend.base.Window):
         """Show and pop window from stack
 
         Parameters
         ----------
         qtile : libqtile.qtile
             qtile root object
-        win : libqtile.window.Window
+        win : libqtile.backend.base.Window
             Window to pop from stack
         """
         group = qtile.groups_map[self.grp_name]
