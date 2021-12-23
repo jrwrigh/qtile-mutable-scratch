@@ -41,6 +41,12 @@ hook.subscribe.startup_complete(minscr.qtile_startup)
       `MutableScratch` window in the stack will be moved to the current group
 3. To remove a window from the `MutableScratch` group, use `MutableScratch.remove()`
 
+### Hastily thrown together demo video:
+It's ugly, but it get's the point across...hopefully.
+
+https://user-images.githubusercontent.com/20801821/147259912-5acec613-239b-4fe3-aebb-9c1820426d2c.mp4
+
+
 ## Implementation Details
 
 ### Tracking members of the `MutableScratch` group
