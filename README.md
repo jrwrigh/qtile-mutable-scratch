@@ -51,8 +51,8 @@ https://user-images.githubusercontent.com/20801821/147259912-5acec613-239b-4fe3-
 
 ### Tracking members of the `MutableScratch` group
 
-This is done by adding an attribute to the window object that simply stores a
-boolean.
+This is done by dynamically adding an attribute (by default `mutscratch`) to
+the window object that simply stores a boolean.
 
 ### Cycling through windows in `MutableScratch`
 
