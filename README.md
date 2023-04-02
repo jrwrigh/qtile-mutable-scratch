@@ -27,7 +27,7 @@ keys.extend( [
     EzKey('M-C-<minus>', mutscr.remove()),
 ] )
 
-hook.subscribe.startup_complete(minscr.qtile_startup)
+hook.subscribe.startup_complete(mutscr.qtile_startup)
 ```
 
 ## Usage
