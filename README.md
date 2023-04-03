@@ -13,18 +13,27 @@ added to the `MutableScratch` group will be automatically converted to
 floating. This emulates the scratch functionality of i3 as closely as possible.
 
 
+## Installation
+
+You can now install via `pip`:
+```
+pip install qtile_mutable_scratch
+```
+
 ## Setup
 
 Put the following default configuration in your `config.py`:
 ```python
-## Setup MutableScratch
-mutscr = MutableScratch()
-groups.append(Group(''))
+import qtile_mutable_scratch
+...
+
+mutscr = qtile_mutable_scratch.MutableScratch()
+groups.append(Group('')) # Must be after `groups` is created
 
 keys.extend( [
     EzKey('M-S-<minus>', mutscr.add_current_window()),
+    EzKey('M-C-<minus>', mutscr.remove_current_window()),
     EzKey('M-<minus>',   mutscr.toggle()),
-    EzKey('M-C-<minus>', mutscr.remove()),
 ] )
 
 hook.subscribe.startup_complete(mutscr.qtile_startup)
