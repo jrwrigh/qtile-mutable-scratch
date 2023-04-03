@@ -1,7 +1,6 @@
 import libqtile
-import libqtile.lazy
-from libqtile.lazy import lazy
 import libqtile.config
+from libqtile.lazy import lazy
 from libqtile.log_utils import logger
 
 # For type hints
