@@ -25,6 +25,8 @@ pip install qtile_mutable_scratch
 Put the following default configuration in your `config.py`:
 ```python
 import qtile_mutable_scratch
+from libqtile.config import EzKey
+from libqtile import hook
 ...
 
 mutscr = qtile_mutable_scratch.MutableScratch()
