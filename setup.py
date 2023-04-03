@@ -3,9 +3,13 @@ import setuptools
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+with open("qtile_mutable_scratch/_version.py", "r") as fh:
+    line = fh.read()
+exec(line)
+
 setuptools.setup(
     name="qtile-mutable_scratch",
-    version="0.0.1",
+    version=__version__,
     author="James Wright",
     author_email="james@jameswright.xyz",
     description="Add mutable scratch functionality to qtile",
@@ -20,7 +24,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    py_modules = ['MutableScratch'],
-    packages=setuptools.find_packages(where="src"),
+    packages=setuptools.find_packages(where="./qtile_mutable_scratch"),
     python_requires=">=3.6",
 )
