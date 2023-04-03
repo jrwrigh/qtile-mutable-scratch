@@ -1,6 +1,6 @@
 # qtile MutableScratch
 
-![PyPI](https://img.shields.io/pypi/v/qtile-mutable_scratch)
+[![PyPI](https://img.shields.io/pypi/v/qtile-mutable_scratch)](https://pypi.org/project/qtile-mutable-scratch/)
 
 This package is a series of functions and a class to create a "scratch" space
 in qtile more similar to i3's. qtile has the `ScratchPad` group type, but the
