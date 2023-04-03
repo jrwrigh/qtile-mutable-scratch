@@ -1,5 +1,7 @@
 # qtile MutableScratch
 
+![PyPI](https://img.shields.io/pypi/v/qtile-mutable_scratch)
+
 This package is a series of functions and a class to create a "scratch" space
 in qtile more similar to i3's. qtile has the `ScratchPad` group type, but the
 (documented) purpose is to only host `Dropdown` windows that must be specified
