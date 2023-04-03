@@ -6,3 +6,4 @@
 2. Upload the wheels to PyPI via `twine`
     - `python3 -m twine upload dist/*`
     - This will require an API token to perform the upload
+        - Username is `__token__`, password is the token itself
