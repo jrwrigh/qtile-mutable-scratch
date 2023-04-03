@@ -8,13 +8,14 @@ from libqtile.log_utils import logger
 from libqtile.core.manager import Qtile
 from libqtile.group import _Group
 from libqtile.backend import base
+from collections.abc import Callable
 
 
 class MutableScratch(object):
     """For creating a mutable scratch workspace (similar to i3's scratch functionality)"""
 
 
-    def __init__(self, win_attr: str='mutscratch', grp_name: str=''):
+    def __init__(self, win_attr: str='mutscratch', group_name: str=''):
         """
 
         Parameters
@@ -22,12 +23,12 @@ class MutableScratch(object):
         win_attr : str
             Attribute added to the qtile.window object to determine whether the
             window is a part of the MutableScratch system
-        grp_name : str
+        group_name : str
             Name of the group that holds the windows added to the scratch space
         """
 
         self.win_attr: str = win_attr
-        self.grp_name: str = grp_name
+        self.scratch_group_name: str = group_name
 
         self.win_stack: list = [] # Equivalent of focus_history
 
@@ -41,7 +42,7 @@ class MutableScratch(object):
         """
 
         qtile = libqtile.qtile
-        group = qtile.groups_map[self.grp_name]
+        group = qtile.groups_map[self.scratch_group_name]
 
         for win in group.windows:
             win.floating = True
@@ -50,7 +51,7 @@ class MutableScratch(object):
         self.win_stack = group.windows.copy()
 
 
-    def add_current_window(self):
+    def add_current_window(self) -> Callable:
         """Add current window to the MutableScratch system"""
         @lazy.function
         def _add_current_window(qtile: Qtile):
@@ -59,13 +60,13 @@ class MutableScratch(object):
             win.floating = True
             setattr(win, self.win_attr, True)
 
-            win.togroup(self.grp_name)
+            win.togroup(self.scratch_group_name)
             self.win_stack.append(win)
 
         return _add_current_window
 
 
-    def remove_current_window(self):
+    def remove_current_window(self) -> Callable:
         """Remove current window from MutableScratch system"""
         @lazy.function
         def _remove(qtile: Qtile):
@@ -77,7 +78,7 @@ class MutableScratch(object):
         return _remove
 
 
-    def toggle(self):
+    def toggle(self) -> Callable:
         """Toggle between hiding/showing MutableScratch windows
 
         If current window is in the MutableScratch system, hide the window. If
@@ -93,7 +94,7 @@ class MutableScratch(object):
         return _toggle
 
 
-    def _push(self, win: base.Window):
+    def _push(self, win: base.Window) -> None:
         """Hide and push window to stack
 
         Parameters
@@ -101,11 +102,11 @@ class MutableScratch(object):
         win : libqtile.backend.base.Window
             Window to push to the stack
         """
-        win.togroup(self.grp_name)
+        win.togroup(self.scratch_group_name)
         self.win_stack.append(win)
 
 
-    def _pop(self, qtile: Qtile):
+    def _pop(self, qtile: Qtile) -> None:
         """Show and pop window from stack
 
         Parameters
@@ -115,11 +116,11 @@ class MutableScratch(object):
         win : libqtile.backend.base.Window
             Window to pop from stack
         """
-        group: _Group = qtile.groups_map[self.grp_name]
-        if set(self.win_stack) != set(group.windows):
-            logger.warning(f"{self}'s win_stack and {group}'s windows have mismatching windows: "
-                           f"{set(self.win_stack).symmetric_difference(set(group.windows))}")
-            self.win_stack = group.windows.copy()
+        scratch_group: _Group = qtile.groups_map[self.scratch_group_name]
+        if set(self.win_stack) != set(scratch_group.windows):
+            logger.warning(f"{self}'s win_stack and {scratch_group}'s windows have mismatching windows: "
+                           f"{set(self.win_stack).symmetric_difference(set(scratch_group.windows))}")
+            self.win_stack = scratch_group.windows.copy()
         if self.win_stack:
             win = self.win_stack.pop(0)
             win.togroup(qtile.current_group.name)
