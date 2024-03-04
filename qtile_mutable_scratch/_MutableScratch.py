@@ -102,6 +102,7 @@ class MutableScratch(object):
             Window to push to the stack
         """
         win.togroup(self.scratch_group_name)
+        win.keep_above(False)
         self.win_stack.append(win)
 
 
@@ -123,3 +124,4 @@ class MutableScratch(object):
         if self.win_stack:
             win = self.win_stack.pop(0)
             win.togroup(qtile.current_group.name)
+            win.keep_above(True)
