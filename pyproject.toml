@@ -1,39 +1,35 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-# [project]
-# name = "qtile-mutable_scratch"
-# authors = [{name = "James Wright", email = "james@jameswright.xyz"}]
-# description = "Add mutable scratch functionality to qtile"
-# readme = "README.md"
-# license = {file = "LICENSE"}
-# keywords = ["qtile"]
-# requires-python = ">=3.6"
-# classifiers = [
-#     "Programming Language :: Python :: 3",
-#     "License :: OSI Approved :: MIT License",
-#     "Operating System :: OS Independent",
-# ]
-# dependencies = [
-#     "qtile>=0.17"
-# ]
-#
-# # dynamic = ["version"]
-#
-# [project.urls]
-# documentation = "https://github.com/jrwrigh/qtile-mutable_scratch"
-# repository = "https://github.com/jrwrigh/qtile-mutable_scratch"
-# "Bug Tracker" = "https://github.com/jrwrigh/qtile-mutable_scratch/issues"
-#
-# # [tools.setuptools.dynamic]
-# # version = {attr = "qtile_mutable_scratch._version.__version__"}
-#
-# [tool.setuptools.packages.find]
-# include = [
-#     "qtile_mutable_scratch",
-#     "qtile_mutable_scratch.*",
-# ]
+[project]
+name = "qtile-mutable-scratch"
+dynamic = ["version"]
+description = "Add mutable scratch functionality to qtile"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = ">=3.6"
+authors = [
+    { name = "James Wright", email = "james@jameswright.xyz" },
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Issues = "https://github.com/jrwrigh/qtile-mutable_scratch/issues"
+Homepage = "https://github.com/jrwrigh/qtile-mutable_scratch"
+
+[tool.hatch.version]
+path = "qtile_mutable_scratch/_version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/qtile_mutable_scratch",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["qtile_mutable_scratch"]
